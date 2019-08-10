@@ -10,10 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_10_165207) do
+ActiveRecord::Schema.define(version: 2019_08_10_180908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dislikes", force: :cascade do |t|
+    t.bigint "listing_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_dislikes_on_listing_id"
+    t.index ["user_id"], name: "index_dislikes_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "listing_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_likes_on_listing_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.string "url"
+    t.string "suggestion"
+    t.bigint "playlist_id"
+    t.integer "position"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["playlist_id"], name: "index_listings_on_playlist_id"
+  end
 
   create_table "playlists", force: :cascade do |t|
     t.string "name"
@@ -33,5 +62,10 @@ ActiveRecord::Schema.define(version: 2019_08_10_165207) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "dislikes", "listings"
+  add_foreign_key "dislikes", "users"
+  add_foreign_key "likes", "listings"
+  add_foreign_key "likes", "users"
+  add_foreign_key "listings", "playlists"
   add_foreign_key "playlists", "users"
 end
