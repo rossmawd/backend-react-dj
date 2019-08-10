@@ -16,8 +16,8 @@ Listing.delete_all
 Like.delete_all
 Dislike.delete_all
 
-User.create(email: "ross@hotmail.com", password: "123456", password_confirmation: "123456")
-User.create(email: "pedro@hotmail.com", password: "123456", password_confirmation: "123456")
+User.create(email: "ross@hotmail.com", password: "123456")
+User.create(email: "pedro@hotmail.com", password: "123456")
 
 20.times do
   Playlist.create(
