@@ -17,6 +17,12 @@ gem 'puma', '~> 3.11'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'jwt'
+gem 'awesome_print'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+
+group :test do
+  gem 'database_cleaner'
+end
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

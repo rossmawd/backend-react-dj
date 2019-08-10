@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/stympy/faker.git
+  revision: b3fe778350b627df96f68f4ee9c5978473173300
+  branch: master
+  specs:
+    faker (2.1.0)
+      i18n (>= 0.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -48,6 +56,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
+    awesome_print (1.8.0)
     bcrypt (3.1.13)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
@@ -57,6 +66,7 @@ GEM
       activesupport
     concurrent-ruby (1.1.5)
     crass (1.0.4)
+    database_cleaner (1.7.0)
     erubi (1.8.0)
     ffi (1.11.1)
     globalid (0.4.2)
@@ -144,9 +154,12 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.10)
+  awesome_print
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
   byebug
+  database_cleaner
+  faker!
   jwt
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
