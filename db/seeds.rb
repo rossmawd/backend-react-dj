@@ -37,7 +37,6 @@ i = 0
   i += 1
   x = 0
   10.times do
-    x += 1
     Listing.create(
       playlist_id: playlist_id,
       url: songs.sample(),
@@ -45,6 +44,7 @@ i = 0
       position: x,
       name: Faker::Music::GratefulDead.song,
     )
+    x += 1
   end
 end
 

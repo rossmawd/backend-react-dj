@@ -16,7 +16,7 @@ gem 'puma', '~> 3.11'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'jwt'
+gem 'jwt', "~> 2.2"
 gem 'awesome_print'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 
