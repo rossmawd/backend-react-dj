@@ -1,5 +1,11 @@
 class Api::V1::ListingsController < ApplicationController
 
+  def index
+    listings = Listing.all
+
+    render json: listings
+  end
+  
   def create
     listing = Listing.create(listing_params)
 
@@ -11,11 +17,7 @@ class Api::V1::ListingsController < ApplicationController
     end
   end
 
-  def index
-    listings = Listing.all
 
-    render json: listings
-  end
 
   def destroy
     
