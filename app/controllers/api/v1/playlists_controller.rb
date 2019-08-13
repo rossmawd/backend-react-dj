@@ -17,13 +17,16 @@ class Api::V1::PlaylistsController < ApplicationController
   end
 
   def destroy
-    @playlist = Playlist.where(id: params[:id]).first
-    if @contact.destroy
-      head[:ok]
-      render json: { message: "Playlist Successfully Deleted" }
+    
+    @playlist = Playlist.find(params[:id])
+    if @playlist.destroy
+      
+      render json: { message: "Playlist Successfully Deleted" }, status: :accepted
+      
     else
-      head(:unprocessable_entity)
-      render json: { error: "Delete Unsuccessful" }
+     
+      render json: { error: "Delete Unsuccessful" }, status: :bad_request
+    
     end
   end
 

@@ -25,7 +25,7 @@ module BackendReactDj
     config.middleware.insert_before 0, Rack::Cors do
       allow do
           origins '*'
-          resource '*', headers: :any, methods: [:get, :post, :destroy, :delete]
+          resource '*', headers: :any, methods: [:get, :post, :destroy, :delete, :patch]
       end
     end
      
