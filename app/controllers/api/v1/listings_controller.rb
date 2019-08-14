@@ -16,49 +16,72 @@ class Api::V1::ListingsController < ApplicationController
   end
 
   def update
-    #listing = current_flatmate.listings.select { |listing| listing.id === params[:id] }
+    # listing = current_flatmate.listings.select { |listing| listing.id === params[:id] }
 
     listing = Listing.find(params[:id])
     if listing
       listing.update(listing_params)
       render json: { listing: ListingSerializer.new(listing) }, status: :created
     else
-      render json: { error: "Update Unsuccessful" }
+      render json: { error: 'Update Unsuccessful' }
     end
   end
 
   def update_position
-    listing_id = params["listing"]["id"]
-    current_position = params["listing"]["position"]
+    listing_id = params['listing']['id']
+    current_position = params['listing']['position']
 
-    playlist = Playlist.find(params["listing"]["playlist_id"])
+    playlist = Playlist.find(params['listing']['playlist_id'])
     songs = playlist.listings
-    sorted = songs.sort { |a,b| a.position <=> b.position}
+    sorted_songs = songs.sort { |a, b| a.position <=> b.position }
+    # byebug
+    if params['id'] == 'up' && sorted_songs[current_position + 1]
+      other_listing = sorted_songs.filter { |listing| listing.position == current_position + 1 }.last
 
-    if params["id"] == "up" && sorted[current_position + 1]
-      other_listing = sorted.filter{ |listing| listing.position == current_position + 1}.last
-      
-      Listing.update(other_listing.id, :position => current_position)
-      Listing.update(listing_id, :position => current_position + 1)
-      
-      render json: { messsage: "Moved Up!"  }, status: :created
-    #check for valid move (cannot go above the top, or below bottom)
-    
-  else
-    render json: { error: "You can't move above the top!" }
+      Listing.update(other_listing.id, position: current_position)
+      Listing.update(listing_id, position: current_position + 1)
+
+      render json: { messsage: 'Moved Up!' }, status: :created
+    # check for valid move (cannot go above the top, or below bottom)
+
+    elsif params['id'] == 'down' && ((current_position - 1) >= 0)
+      # byebug
+      other_listing = sorted_songs.filter { |listing| listing.position == current_position - 1 }.last
+
+      Listing.update(other_listing.id, position: current_position)
+      Listing.update(listing_id, position: current_position - 1)
+
+      render json: { messsage: 'Moved Down!' }, status: :created
+
+    elsif params['id'] == 'delete' 
+       
+      top_index=(sorted_songs.length)-1 
+      number_to_update = top_index - (current_position )
+      x = current_position + 1
+      number_to_update.times do
+        
+        to_update = sorted_songs.filter  { |listing| listing.position == x }.last
+   
+
+        Listing.update(to_update.id, position: x-1)
+        x += 1
+      end
+      render json: { messsage: 'All higher positions changed!' }, status: :created
+
+    else
+      render json: { error: "Can't be moved any further!" }
     end
   end
 
   def destroy
-
-    #current_user?
-    listing = Listing.find(params["id"])
-    #.select { |event| event.id === params[:id].to_i}
+    # current_user?
+    listing = Listing.find(params['id'])
+    # .select { |event| event.id === params[:id].to_i}
     if listing
       listing.destroy
-      render json: { message: "Listing Successfully Deleted" }
+      render json: { message: 'Listing Successfully Deleted' }
     else
-      render json: { error: "Delete Unsuccessful" }
+      render json: { error: 'Delete Unsuccessful' }
     end
   end
 
