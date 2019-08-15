@@ -16,6 +16,17 @@ class Api::V1::PlaylistsController < ApplicationController
     end
   end
 
+  def update
+    
+    playlist = Playlist.find(params[:id])
+    if playlist
+      playlist.update(playlist_params)
+      render json: { playlist: PlaylistSerializer.new(playlist) }, status: :created
+    else
+      render json: { error: 'Update Unsuccessful' }
+    end
+  end
+
   def destroy
     
     @playlist = Playlist.find(params[:id])
