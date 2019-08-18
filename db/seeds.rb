@@ -16,6 +16,7 @@ Listing.delete_all
 Like.delete_all
 Dislike.delete_all
 
+User.create(email: "guest@hotmail.com", password: "123456")
 User.create(email: "ross@hotmail.com", password: "123456")
 User.create(email: "pedro@hotmail.com", password: "123456")
 
