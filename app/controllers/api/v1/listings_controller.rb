@@ -8,6 +8,11 @@ class Api::V1::ListingsController < ApplicationController
   end
 
   def create
+    playlist = Playlist.find( params["listing"]["playlist_id"])
+    playlist_length = playlist.listings.length
+    new_listing_position =  playlist_length
+    params["listing"]["position"] = new_listing_position
+
     listing = Listing.create(listing_params)
 
     if listing.valid?
