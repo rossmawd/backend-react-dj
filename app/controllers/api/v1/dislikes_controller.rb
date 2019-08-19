@@ -7,9 +7,17 @@ class Api::V1::DislikesController < ApplicationController
   end
 
   def create
-    byebug
-    dislike = Dislike.create(dislike_params)
 
+    dislike = Dislike.create(dislike_params)
+    
+    user_id = params["dislike"]["user_id"]
+    listing_id =  params["dislike"]["listing_id"]
+    like = Like.find_by( user_id: user_id, listing_id: listing_id)
+
+    if like
+      like.destroy
+    end
+   
     if dislike.valid?
       render json: dislike, status: :created
     else

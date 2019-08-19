@@ -7,8 +7,15 @@ class Api::V1::LikesController < ApplicationController
   end
 
   def create
-    
     like = Like.create(like_params)
+
+    user_id = params["like"]["user_id"]
+    listing_id =  params["like"]["listing_id"]
+    dislike = Dislike.find_by( user_id: user_id, listing_id: listing_id)
+  
+    if dislike
+      dislike.destroy
+    end
 
     if like.valid?
       render json: like, status: :created
