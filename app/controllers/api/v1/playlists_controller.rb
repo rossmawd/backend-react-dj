@@ -26,7 +26,7 @@ class Api::V1::PlaylistsController < ApplicationController
   end
 
   def show
-    #byebug
+    
     playlist = Playlist.find(params[:id])
     render json: playlist, status: :created
   end
