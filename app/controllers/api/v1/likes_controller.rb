@@ -21,9 +21,10 @@ class Api::V1::LikesController < ApplicationController
       user = User.find(like.user_id)
       email = user.email
       listing = Listing.find(like.listing_id)
+      playlist = Playlist.find(listing.playlist_id)
       listing_name = listing.name
       message = email + " likes " + "'"+listing_name+"'"
-      jeff = {"text" => message, "id" => 1, "listing_id" => listing.id}
+      jeff = {"text" => message, "id" => 1, "listing_id" => listing.id, "playlist_id" => playlist.id}
       ActionCable.server.broadcast('notes', jeff )
 
       render json: like, status: :created

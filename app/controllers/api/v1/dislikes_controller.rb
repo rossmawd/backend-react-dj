@@ -19,6 +19,15 @@ class Api::V1::DislikesController < ApplicationController
     end
    
     if dislike.valid?
+      user = User.find(like.user_id)
+      email = user.email
+      listing = Listing.find(like.listing_id)
+      playlist = Playlist.find(listing.playlist_id)
+      listing_name = listing.name
+      message = email + " dislikes " + "'"+listing_name+"'"
+      jeff = {"text" => message, "id" => 1, "listing_id" => listing.id, "playlist_id" => playlist.id}
+      ActionCable.server.broadcast('notes', jeff )
+
       render json: dislike, status: :created
     else
       render json: { errors: dislike.errors.full_messages }, status: :not_accepted
