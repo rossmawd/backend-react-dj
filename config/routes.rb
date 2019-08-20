@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post "/login", to: "auth#create"
       get "/validate", to: "auth#validate"
       patch "/listing/:id", to: "listings#update_position"
+      mount ActionCable.server, at: ‘/cable’
     end
   end
 end

@@ -53,9 +53,9 @@ i = 0
   end
 end
 
-1000.times do
-  Like.create(listing_id: Listing.all.sample().id, user_id: User.all.sample().id)
-end
-500.times do
-  Dislike.create(listing_id: Listing.all.sample().id, user_id: User.all.sample().id)
-end
+# 1000.times do
+#   Like.create(listing_id: Listing.all.sample().id, user_id: User.all.sample().id)
+# end
+# 500.times do
+#   Dislike.create(listing_id: Listing.all.sample().id, user_id: User.all.sample().id)
+# end

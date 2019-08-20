@@ -37,6 +37,13 @@ Rails.application.configure do
   # config.action_cable.url = 'wss://example.com/cable'
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
+  config.action_cable.mount_path = '/cable'
+  config.action_cable.url = 'wss://localhost:3000/cable'
+  config.action_cable.allowed_request_origins = [ /http:\/\/localhost:*/ ]
+  # You will need to add your front end domain names (including the different protocols, 
+  # like http vs. https) to config.action_cable.allowed_request_origins if you push your app to Heroku,
+  # as well as changing config.action_cable.url to match your front end.
+
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
