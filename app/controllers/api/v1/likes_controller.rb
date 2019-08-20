@@ -22,9 +22,10 @@ class Api::V1::LikesController < ApplicationController
       email = user.email
       listing = Listing.find(like.listing_id)
       listing_name = listing.name
-      message = email + " likes " + listing_name
-      jeff = {"text" => message, "id" => 1}
+      message = email + " likes " + "'"+listing_name+"'"
+      jeff = {"text" => message, "id" => 1, "listing_id" => listing.id}
       ActionCable.server.broadcast('notes', jeff )
+
       render json: like, status: :created
     else
       render json: { errors: like.errors.full_messages }, status: :not_accepted
