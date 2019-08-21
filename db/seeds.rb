@@ -24,7 +24,8 @@ genres= ["Blues" ,"Classical","Country", "Electronic", "Folk","Jazz" ,"New age",
 
 20.times do
   Playlist.create(
-    name: "Music to " + Faker::Verb.base + " to",
+   #name: "Music to " + Faker::Verb.base + " to",
+    name: "#{Faker::Marketing.buzzwords}",
     description: "#{Faker::Markdown.emphasis}",
     party: [true, false].sample(),
     genre: genres.sample(),
@@ -32,8 +33,8 @@ genres= ["Blues" ,"Classical","Country", "Electronic", "Folk","Jazz" ,"New age",
   )
 end
 
-songs = ["https://www.youtube.com/watch?v=f8aT9oRp95A&t=105s", "https://www.youtube.com/watch?v=f4RVAct8ZDo", "https://www.youtube.com/watch?v=R2F_hGwD26g", "https://www.youtube.com/watch?v=8jzDnsjYv9A"]
-
+songs = ["https://www.youtube.com/watch?v=f8aT9oRp95A&t=105s", "https://www.youtube.com/watch?v=f4RVAct8ZDo", "https://www.youtube.com/watch?v=R2F_hGwD26g", "https://www.youtube.com/watch?v=8jzDnsjYv9A", "https://www.youtube.com/watch?v=0fAQhSRLQnM", "https://www.youtube.com/watch?v=JRDgihVDEko", "https://www.youtube.com/watch?v=pKwQlm-wldA", "https://www.youtube.com/watch?v=htgr3pvBr-I", "https://www.youtube.com/watch?v=47P3bzefCVI", "https://www.youtube.com/watch?v=s88r_q7oufE" ]
+songs.uniq!
 
 
 i = 0
@@ -44,7 +45,7 @@ i = 0
   10.times do
     Listing.create(
       playlist_id: playlist_id,
-      url: songs.sample(),
+      url: songs[x],
       suggestion: [true, false].sample(),
       position: x,
       name: Faker::Music::GratefulDead.song,
