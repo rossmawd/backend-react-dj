@@ -12,6 +12,7 @@ class Api::V1::AuthController < ApplicationController
     end
   
     def validate
+     
       user = @current_user
       if user
         render json: { user: UserSerializer.new(user), token: issue_token(user_id: user.id) }, status: :accepted
