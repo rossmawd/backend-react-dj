@@ -41,7 +41,7 @@ Rails.application.configure do
   config.action_cable.url = ENV["REDIS_URL"]
   config.action_cable.disable_request_forgery_protection = true
 
-  config.web_socket_server_url = "wss://scorepal.herokuapp.com/cable"
+  config.web_socket_server_url = "wss://backend-react-dj.herokuapp.com/cable"
   config.action_cable.allowed_request_origins = ["https://backend-react-dj.herokuapp.com", "http://backend-react-dj.herokuapp.com"]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
