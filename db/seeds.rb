@@ -29,7 +29,7 @@ genres= ["Blues" ,"Classical","Country", "Electronic", "Folk","Jazz" ,"New age",
     description: "#{Faker::Markdown.emphasis}",
     party: [true, false].sample(),
     genre: genres.sample(),
-    user_id: User.all.sample().id,
+    user_id: User.all.sample(gemfil).id,
   )
 end
 
