@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-require "database_cleaner"
-DatabaseCleaner.strategy = :truncation
-DatabaseCleaner.clean
+# require "database_cleaner"
+# DatabaseCleaner.strategy = :truncation
+# DatabaseCleaner.clean
 User.delete_all
 Playlist.delete_all
 Listing.delete_all
