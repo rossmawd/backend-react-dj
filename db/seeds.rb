@@ -20,6 +20,10 @@ User.create(email: "guest@hotmail.com", password: "123456")
 User.create(email: "ross@hotmail.com", password: "123456")
 User.create(email: "pedro@hotmail.com", password: "123456")
 
+Note.create(text: "")
+
+ https://backend-react-dj.herokuapp.com/notes/1
+
 genres= ["Blues" ,"Classical","Country", "Electronic", "Folk","Jazz" ,"New age", "Reggae", "Rock", "Metal", "Other"]
 
 20.times do
