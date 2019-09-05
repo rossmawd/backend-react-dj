@@ -6,7 +6,7 @@ class Api::V1::PlaylistsController < ApplicationController
 
   def create
     @playlist = Playlist.new(playlist_params)
-
+    #byebug
     if @playlist.valid?
       @playlist.save                                           # status 201: creted
       render json: { playlist: PlaylistSerializer.new(@playlist) }, status: :created
